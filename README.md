@@ -18,4 +18,4 @@ You can go to the detail page of each character and view detailed information ab
 * run ### `yarn or npm install`
 * run cd ios then  ### `npx pod-install`
 * for Fonts run ### `npx react-native-asset`
-
+* for run project ### `npx react-native run-ios or yarn ios`
