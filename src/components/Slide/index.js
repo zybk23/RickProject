@@ -1,21 +1,13 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react-hooks/exhaustive-deps */
+import React from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
 import {styles} from './styles';
-import axios from 'axios';
 
-const Slide = ({url}) => {
+const Slide = ({characterInfo}) => {
   const navigation = useNavigation();
-  const [characterInfo, setCharacterInfo] = useState({});
-  const getCharacterDetails = async () => {
-    const {data} = await axios.get(url);
-    setCharacterInfo(data);
-  };
-  useEffect(() => {
-    getCharacterDetails();
-  }, []);
+
   return (
     <View style={styles.slide}>
       <Image
@@ -23,7 +15,11 @@ const Slide = ({url}) => {
         source={{uri: characterInfo?.image}}
         resizeMode="cover"
       />
-      <View style={styles.infoArea}>
+      <TouchableOpacity
+        onPress={() =>
+          navigation.navigate('CharacterDetails', {data: characterInfo})
+        }
+        style={styles.infoArea}>
         <View style={styles.info}>
           <Text style={styles.name}>{characterInfo?.name}</Text>
           <View style={styles.statusContainer}>
@@ -46,18 +42,12 @@ const Slide = ({url}) => {
             </Text>
           </View>
         </View>
-        <TouchableOpacity
-          onPress={() =>
-            navigation.navigate('CharacterDetails', {data: characterInfo})
-          }
-          style={styles.detailButton}>
-          <Image
-            source={require('../../constants/images/right.png')}
-            resizeMode="cover"
-            style={styles.icon}
-          />
-        </TouchableOpacity>
-      </View>
+        <Image
+          source={require('../../constants/images/right.png')}
+          resizeMode="cover"
+          style={styles.icon}
+        />
+      </TouchableOpacity>
     </View>
   );
 };

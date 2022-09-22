@@ -2,45 +2,13 @@ import {StyleSheet} from 'react-native';
 import {COLORS, SIZES, FONTS} from '../../constants/theme';
 
 export const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    backgroundColor: '#fbfbfb',
-    borderColor: COLORS.softGray,
-    borderWidth: 1,
-    borderRadius: 8,
-    shadowColor: '#fcfcfc',
-    shadowOpacity: 1,
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    height: '80%',
-  },
-  scrollView: {
-    display: 'flex',
-    flexDirection: 'row',
-    overflow: 'hidden',
-  },
-  bullets: {
-    position: 'absolute',
-    bottom: 20,
-    right: 20,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-    paddingHorizontal: 10,
-    paddingTop: 5,
-  },
-  bullet: {
-    paddingHorizontal: 5,
-    fontSize: 20,
-  },
   filterContainer: {
-    flex: 1,
+    width: '100%',
+    height: '8%',
     flexDirection: 'row',
-    paddingHorizontal: 20,
     alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
   },
   filterText: {
     fontSize: SIZES.font,

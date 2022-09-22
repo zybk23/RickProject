@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {View, Text, SafeAreaView, FlatList} from 'react-native';
+import {View, SafeAreaView, FlatList} from 'react-native';
 import {styles} from './styles';
 import {getLocations} from '../../store/dataSlice';
 import {Statusbar, LocationCard, Pagination} from '../../components';

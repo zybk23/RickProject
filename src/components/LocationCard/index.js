@@ -9,7 +9,7 @@ const LocationCard = ({data}) => {
     navigation.navigate('Characters', {data: data?.residents});
   };
   return (
-    <View style={styles.container}>
+    <TouchableOpacity onPress={handleOpenCharacter} style={styles.container}>
       <View style={styles.infoArea}>
         <View style={styles.textArea}>
           <Text style={styles.title}>Name:</Text>
@@ -24,15 +24,13 @@ const LocationCard = ({data}) => {
           <Text style={styles.info}>{data?.residents.length}</Text>
         </View>
       </View>
-      <TouchableOpacity
-        onPress={handleOpenCharacter}
-        style={styles.imgContainer}>
+      <View style={styles.imgContainer}>
         <Image
           style={styles.img}
           source={require('../../constants/images/right.png')}
         />
-      </TouchableOpacity>
-    </View>
+      </View>
+    </TouchableOpacity>
   );
 };
 

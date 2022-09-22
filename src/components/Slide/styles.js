@@ -6,9 +6,9 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     flex: 1,
     display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+    flexDirection: 'column',
     height: '100%',
+    paddingTop: 16,
   },
   img: {
     width: '100%',
@@ -52,8 +52,8 @@ export const styles = StyleSheet.create({
     height: 24,
   },
   icon: {
-    width: '100%',
-    height: '100%',
+    width: 24,
+    height: 24,
   },
 });
 

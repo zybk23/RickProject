@@ -1,42 +1,25 @@
-import React from 'react';
-import {View, ScrollView, Text, Image} from 'react-native';
-import SelectDropdown from 'react-native-select-dropdown';
+import React, {useState, useEffect, useCallback} from 'react';
+import {View, ScrollView, Text} from 'react-native';
 import {styles} from './styles';
 import Slide from '../Slide';
 
-const selections = [
-  {
-    id: 1,
-    name: 'All',
-  },
-  {
-    id: 2,
-    name: 'Alive',
-  },
-  {
-    id: 3,
-    name: 'Dead',
-  },
-  {
-    id: 4,
-    name: 'unknown',
-  },
-];
-
 export const Carousel = props => {
   const {items} = props;
-  const itemsPerInterval =
-    props.itemsPerInterval === undefined ? 1 : props.itemsPerInterval;
 
-  const [interval, setInterval] = React.useState(1);
-  const [intervals, setIntervals] = React.useState(1);
-  const [width, setWidth] = React.useState(0);
+  const itemsPerInterval = 1;
 
-  const init = item => {
-    setWidth(item);
-    const totalItems = items.length;
-    setIntervals(Math.ceil(totalItems / itemsPerInterval));
-  };
+  const [interval, setInterval] = useState(1);
+  const [intervals, setIntervals] = useState(1);
+  const [width, setWidth] = useState(0);
+
+  const init = useCallback(
+    item => {
+      setWidth(item);
+      const totalItems = items.length;
+      setIntervals(Math.ceil(totalItems / itemsPerInterval));
+    },
+    [items.length],
+  );
 
   const getInterval = offset => {
     for (let i = 1; i <= intervals; i++) {
@@ -64,36 +47,12 @@ export const Carousel = props => {
     );
   }
 
+  useEffect(() => {
+    init();
+  }, [init, items]);
+
   return (
     <View style={styles.container}>
-      <View style={styles.filterContainer}>
-        <Text style={styles.filterText}>Filter by status</Text>
-        <SelectDropdown
-          data={selections}
-          onSelect={(selectedItem, index) => {
-            console.log(selectedItem, index);
-          }}
-          buttonTextAfterSelection={(selectedItem, index) => {
-            return selectedItem.name;
-          }}
-          rowTextForSelection={(item, index) => {
-            return item.name;
-          }}
-          buttonStyle={styles.filterButton}
-          buttonTextStyle={styles.filterButtonText}
-          rowStyle={styles.rowStyle}
-          rowTextStyle={styles.rowTextStyle}
-          defaultButtonText="All"
-          renderDropdownIcon={() => {
-            return (
-              <Image
-                style={styles.downIcon}
-                source={require('../../constants/images/down.png')}
-              />
-            );
-          }}
-        />
-      </View>
       <ScrollView
         horizontal={true}
         contentContainerStyle={{
@@ -112,7 +71,7 @@ export const Carousel = props => {
         {items.map((item, index) => {
           return (
             <React.Fragment key={index}>
-              <Slide url={item} />
+              <Slide characterInfo={item} />
             </React.Fragment>
           );
         })}
